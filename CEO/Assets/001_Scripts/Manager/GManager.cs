@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Base;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _001_Scripts.Manager
@@ -19,10 +18,8 @@ namespace _001_Scripts.Manager
             }
         }
 
-        public ManagerBase GetManager(string key)
-        {
-            var manager = _managers.ContainsKey(key) ? _managers[key] : null;
-            return manager;
+        public ManagerBase GetManager(string key) {
+            return _managers.TryGetValue(key, out var managerBase) ? managerBase : null;
         }
     }
 }
